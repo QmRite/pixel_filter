@@ -14,7 +14,7 @@ def generate_black_and_white_elem():
 
 img = Image.open(input('Введите названия исходного изображения: '))
 block_size = int(input("Введите размер блока: "))
-grayscale = 255 // int(input("Введите количество градаций серого: "))
+grayscale = 255 // int(input("Введите шаг градаций серого: "))
 pixels = np.array(img)
 height = len(pixels)
 width = len(pixels[1])
