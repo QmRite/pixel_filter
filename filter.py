@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import doctest
 
 
 def count_mean_color(block_size):
@@ -21,14 +22,14 @@ def count_mean_color(block_size):
     return int(color_sum // (block_size * block_size))
 
 
-def generate_black_and_white_elem(block_size, elem_color, grayscale):
+def generate_black_and_white_elem(block_size, block_color, grayscale):
     """
      Перекрашивает блок в черно-белые оттенки
      :param block_size: размер блока
-     :param elem_color: средний цвет блока
+     :param block_color: средний цвет блока
      :param grayscale: кол-во градаций серого
     """
-    medium_color = int(elem_color // grayscale) * grayscale / 3
+    medium_color = int(block_color // grayscale) * grayscale / 3
     pixels[i: i + block_size, j: j + block_size] = medium_color
 
 
@@ -41,8 +42,8 @@ width = len(pixels[1])
 
 for i in range(0, height, block_size):
     for j in range(0, width, block_size):
-        elem_color = count_elem_color()
-        generate_black_and_white_elem()
+        block_color = count_mean_color(block_size)
+        generate_black_and_white_elem(block_size, block_color, grayscale)
 res = Image.fromarray(pixels)
 
 res.save(input("Введите название обработанного изображения: "))
